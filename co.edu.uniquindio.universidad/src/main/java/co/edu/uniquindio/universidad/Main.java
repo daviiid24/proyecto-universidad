@@ -40,5 +40,36 @@ public class Main {
         double nota3Menor=3.9;
         double calcularNotaMenorCurso=docente.calcularNotaMenorCurso(nota1Menor, nota2Menor, nota3Menor);
         System.out.println("La nota menor del curso es: " + calcularNotaMenorCurso);
+
+         definitiva1 =2.9;
+         definitiva2 =4.5;
+         definitiva3 =2.9;
+        String aprobados =docente.aprobacionCurso(definitiva1, definitiva2, definitiva3);
+        System.out.println(aprobados);
+
+        double porcentajeAprobados=docente.calcularPorcentajeAprobados(definitiva1, definitiva2, definitiva3);
+        System.out.println("El porcentaje de los que aprobaron el curso es: "+ porcentajeAprobados);
+
+        double porcentajeReprobados=docente.calcularPorcentajeReprobados(definitiva1, definitiva2, definitiva3);
+        System.out.println("El porcentaje de los que reprobaron el curso es: "+ porcentajeReprobados);
+
+        double definitivaE1=4.1;
+        double definitivaE2=5.0;
+        double definitivaE3 =3.0;
+        String obtenerEstudiante=docente.obtenerEstudianteNotasMayor4(definitivaE1, definitivaE2, definitivaE3);
+        System.out.println("Estudiantes con notas mayores a 4: " +obtenerEstudiante);
+
+        definitiva1 =4.7;
+        definitiva2 =4.5;
+        definitiva3 =2.9;
+        double notaMaxima=docente.obtenerNotaMaxima(definitiva1, definitiva2, definitiva3);
+        System.out.println("La nota maxima es: "+notaMaxima);
+
+        Estudiante estudiante=new Estudiante("Raul", 18, "jfeoa", 9, 5.0, 4.8, 4.9);
+        nota1=5.0;
+        nota2=4.8;
+        nota3=4.9;
+        double calcularDefinitiva=estudiante.calcularNotaDefinitiva(nota1, nota2, nota3);
+        System.out.println("La definitiva es: "+calcularDefinitiva);
     }
 }

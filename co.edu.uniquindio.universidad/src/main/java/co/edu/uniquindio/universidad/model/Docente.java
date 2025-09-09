@@ -66,5 +66,61 @@ public class Docente {
         }
         return menor;
     }
-
+    public String aprobacionCurso(double definitiva1, double definitiva2, double definitiva3) {
+        String mensaje="";
+        if(definitiva1>=3.0) {
+            mensaje+="Estudiante 1 aprobo el curso\n";
+        }
+        if (definitiva2>=3.0) {
+            mensaje+="Estudiante 2 aprobo el curso\n";
+        }
+        if(definitiva3>=3.0) {
+            mensaje+="Estudiante 3 aprobo el curso\n";
+        }
+        return mensaje;
+    }
+    public double calcularPorcentajeAprobados(double definitiva1, double definitiva2, double definitiva3) {
+        double porcentaje=0;
+        if(definitiva1>=3.0) {
+            porcentaje+=1;
+        } if (definitiva2>=3.0) {
+            porcentaje+=1;
+        } if (definitiva3>=3.0) {
+            porcentaje+=1;
+        }
+        porcentaje=(porcentaje/3)*100;
+        return porcentaje;
+    }
+    public double calcularPorcentajeReprobados(double definitiva1, double definitiva2, double definitiva3) {
+        double porcentaje=0;
+        if(definitiva1<3.0) {
+            porcentaje+=1;
+        } if(definitiva2<3.0) {
+            porcentaje+=1;
+        } if (definitiva3<3.0) {
+            porcentaje+=1;
+        }
+        porcentaje=(porcentaje/3)*100;
+        return porcentaje;
+    }
+    public String obtenerEstudianteNotasMayor4(double definitivaE1, double definitivaE2, double definitivaE3) {
+        String mensaje="";
+        if(definitivaE1>=4.0) {
+            mensaje+="Estudiante 1\n";
+        } if (definitivaE2>=4.0) {
+            mensaje+="Estudiante 2\n";
+        } if (definitivaE3>=4.0) {
+            mensaje+="Estudiante 3\n";
+        }
+        return mensaje;
+    }
+    public double obtenerNotaMaxima(double definitiva1, double definitiva2, double definitiva3) {
+        if(definitiva1>definitiva2 && definitiva1>definitiva3) {
+            return definitiva1;
+        } else if (definitiva2>definitiva1 && definitiva2>definitiva3) {
+            return definitiva2;
+        } else {
+            return definitiva3;
+        }
+    }
 }
