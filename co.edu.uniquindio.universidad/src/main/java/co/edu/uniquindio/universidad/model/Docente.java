@@ -42,7 +42,6 @@ public class Docente {
     }
     public double calcularNotaMayorCurso(double nota1Mayor, double nota2Mayor, double nota3Mayor){
         double mayor=0;
-        for(int i=0; i<3; i++) {
             if(nota1Mayor > nota2Mayor && nota1Mayor > nota3Mayor) {
                 mayor= nota1Mayor;
             } else if(nota2Mayor > nota1Mayor && nota2Mayor > nota3Mayor) {
@@ -50,12 +49,10 @@ public class Docente {
             } else {
                 mayor= nota3Mayor;
             }
-        }
         return mayor;
     }
     public double calcularNotaMenorCurso(double nota1Menor, double nota2Menor, double nota3Menor){
         double menor=0;
-        for(int i=0; i<3; i++) {
             if(nota1Menor<nota2Menor && nota1Menor<nota3Menor) {
                 menor=nota1Menor;
             } else if (nota2Menor<nota1Menor && nota2Menor<nota3Menor) {
@@ -63,7 +60,6 @@ public class Docente {
             } else {
                 menor=nota3Menor;
             }
-        }
         return menor;
     }
     public String aprobacionCurso(double definitiva1, double definitiva2, double definitiva3) {
@@ -103,14 +99,35 @@ public class Docente {
         porcentaje=(porcentaje/3)*100;
         return porcentaje;
     }
-    public String obtenerEstudianteNotasMayor4(double definitivaE1, double definitivaE2, double definitivaE3) {
+    public String obtenerEstudianteNotasMayor4(double estudiante1[], double estudiante2[], double estudiante3[]) {
         String mensaje="";
-        if(definitivaE1>=4.0) {
-            mensaje+="Estudiante 1\n";
-        } if (definitivaE2>=4.0) {
-            mensaje+="Estudiante 2\n";
-        } if (definitivaE3>=4.0) {
-            mensaje+="Estudiante 3\n";
+
+        int comprobar=0;
+            for (int i = 0; i < estudiante1.length; i++) {
+                if (estudiante1[i] >= 4.0) {
+                    comprobar++;
+                }
+            }
+            if(comprobar==estudiante1.length) {
+                mensaje += "El estudiante 1 tiene todas las notas mayores o iguales a 4 \n";
+            }
+        int comprobar1=0;
+            for (int i = 0; i < estudiante2.length; i++) {
+                if (estudiante2[i] >= 4.0) {
+                    comprobar1++;
+                }
+            }
+        if(comprobar1==estudiante2.length) {
+            mensaje += "El estudiante 2 tiene todas las notas mayores o iguales a 4 \n";
+        }
+        int comprobar3 =0;
+            for (int i = 0; i < estudiante3.length; i++) {
+                if (estudiante3[i] >= 4.0) {
+                    comprobar3++;
+                }
+            }
+        if(comprobar3==estudiante3.length) {
+            mensaje += "El estudiante 3 tiene todas las notas mayores o iguales a 4 \n";
         }
         return mensaje;
     }

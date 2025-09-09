@@ -53,11 +53,11 @@ public class Main {
         double porcentajeReprobados=docente.calcularPorcentajeReprobados(definitiva1, definitiva2, definitiva3);
         System.out.println("El porcentaje de los que reprobaron el curso es: "+ porcentajeReprobados);
 
-        double definitivaE1=4.1;
-        double definitivaE2=5.0;
-        double definitivaE3 =3.0;
-        String obtenerEstudiante=docente.obtenerEstudianteNotasMayor4(definitivaE1, definitivaE2, definitivaE3);
-        System.out.println("Estudiantes con notas mayores a 4: " +obtenerEstudiante);
+        double[] estudiante1={4.0, 4.0, 5.0};
+        double[] estudiante2={3.0, 5.0, 5.0};
+        double[] estudiante3={2.9, 2.8, 3.1};
+        String obtenerEstudiante=docente.obtenerEstudianteNotasMayor4(estudiante1,  estudiante2, estudiante3);
+        System.out.println(obtenerEstudiante);
 
         definitiva1 =4.7;
         definitiva2 =4.5;
