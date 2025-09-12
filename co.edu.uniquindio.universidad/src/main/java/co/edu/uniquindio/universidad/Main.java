@@ -4,72 +4,114 @@ import co.edu.uniquindio.universidad.model.*;
 
 public class Main {
     public static void main(String[] args) {
-        Docente docente= new Docente("Fred", 24, "fiewhjfi");
-        double nota1=3.0;
-        double nota2=4.0;
-        double nota3=5.0;
-        double definitiva=docente.calcularDefinitivaEstudiante(nota1, nota2, nota3);
-        System.out.println("Definitiva: "+definitiva);
+        Estudiante estudiante1 = new Estudiante();
+        estudiante1.setNombre("Raul");
+        estudiante1.setEdad(19);
+        estudiante1.setCorreo("ujfe");
+        estudiante1.setSemestre(8);
+        estudiante1.setNota1(4.0);
+        estudiante1.setNota2(3.5);
+        estudiante1.setNota3(4.5);
+        Estudiante estudiante2 = new Estudiante();
+        estudiante2.setNombre("Rodolfo");
+        estudiante2.setEdad(17);
+        estudiante2.setCorreo("jberjgk");
+        estudiante2.setSemestre(9);
+        estudiante2.setNota1(5.0);
+        estudiante2.setNota2(4.9);
+        estudiante2.setNota3(4.7);
+        Estudiante estudiante3 = new Estudiante();
+        estudiante3.setNombre("Ana");
+        estudiante3.setEdad(20);
+        estudiante3.setCorreo("vjwi");
+        estudiante3.setSemestre(9);
+        estudiante3.setNota1(4.5);
+        estudiante3.setNota2(3.0);
+        estudiante3.setNota3(4.5);
+        Docente docente= new Docente();
+        docente.setNombre("Pedro");
+        docente.setEdad(35);
+        docente.setCorreo("sbvi");
 
-        double definitiva1=5.0;
-        double definitiva2=5.0;
-        double definitiva3=5.0;
-        double calcularPromedioCurso=docente.calcularPromedioCurso(definitiva1, definitiva2, definitiva3);
-        System.out.println("Promedio curso: "+calcularPromedioCurso);
+        calcularDefinitivaEstudiante(estudiante1, docente);
+        calcularPromedioCurso(estudiante1, estudiante2, estudiante3, docente);
+        calcularPromedioEdad(estudiante1, estudiante2, estudiante3, docente);
+        calcularPromedioNota1(estudiante1, estudiante2, estudiante3, docente);
+        calcularNotaMayorCurso(estudiante1, estudiante2, estudiante3, docente);
+        calcularNotaMenorCurso(estudiante1, estudiante2, estudiante3, docente);
+        aprobacionCurso(estudiante1, estudiante2, estudiante3, docente);
+        porcentajeAprobados(estudiante1, estudiante2, estudiante3, docente);
+        porcentajeReprobados(estudiante1, estudiante2, estudiante3, docente);
+        obtenerEstudianteNotasMayor4(estudiante1,  estudiante2, estudiante3, docente);
+        obtenerNotaMaxima(estudiante1,  estudiante2, estudiante3, docente);
 
-        int edad1=17;
-        int edad2=17;
-        int edad3=17;
-        int calcularPromedioEdad=docente.calcularPromedioEdad(edad1, edad2, edad3);
-        System.out.println("Promedio edad: "+calcularPromedioEdad);
+    }
+    public static void calcularDefinitivaEstudiante(Estudiante estudiante, Docente docente){
+        double definitiva=docente.calcularDefinitivaEstudiante(estudiante.getNota1(), estudiante.getNota2(), estudiante.getNota3());
+        System.out.println("La definitiva es: "+definitiva);
+    }
+    public static void calcularPromedioCurso(Estudiante estudiante1, Estudiante estudiante2, Estudiante estudiante3, Docente docente) {
+        double def1 = docente.calcularDefinitivaEstudiante(estudiante1.getNota1(), estudiante1.getNota2(), estudiante1.getNota3());
+        double def2 = docente.calcularDefinitivaEstudiante(estudiante2.getNota1(), estudiante2.getNota2(), estudiante2.getNota3());
+        double def3 = docente.calcularDefinitivaEstudiante(estudiante3.getNota1(), estudiante3.getNota2(), estudiante3.getNota3());
+        double promedio = docente.calcularPromedioCurso(def1, def2, def3);
+        System.out.println("El promedio del curso es: " + promedio);
+    }
 
-        double nota1e1=5.0;
-        double nota1e2=4.5;
-        double nota1e3=5.0;
-        double calcularPromedioNota1=docente.calcularPromedioNota1(nota1e1, nota1e2, nota1e3);
-        System.out.println("Promedio nota1: "+ calcularPromedioNota1);
-
-        double nota1Mayor =4.5;
-        double nota2Mayor =5.0;
-        double nota3Mayor =3.9;
-        double calcularNotaMayorCurso=docente.calcularNotaMayorCurso(nota1Mayor, nota2Mayor, nota3Mayor);
-        System.out.println("La nota mayor del curso es: " + calcularNotaMayorCurso);
-
-        double nota1Menor=4.5;
-        double nota2Menor=5.0;
-        double nota3Menor=3.9;
-        double calcularNotaMenorCurso=docente.calcularNotaMenorCurso(nota1Menor, nota2Menor, nota3Menor);
-        System.out.println("La nota menor del curso es: " + calcularNotaMenorCurso);
-
-         definitiva1 =2.9;
-         definitiva2 =4.5;
-         definitiva3 =2.9;
-        String aprobados =docente.aprobacionCurso(definitiva1, definitiva2, definitiva3);
-        System.out.println(aprobados);
-
-        double porcentajeAprobados=docente.calcularPorcentajeAprobados(definitiva1, definitiva2, definitiva3);
-        System.out.println("El porcentaje de los que aprobaron el curso es: "+ porcentajeAprobados);
-
-        double porcentajeReprobados=docente.calcularPorcentajeReprobados(definitiva1, definitiva2, definitiva3);
-        System.out.println("El porcentaje de los que reprobaron el curso es: "+ porcentajeReprobados);
-
-        double[] estudiante1={4.0, 4.0, 5.0};
-        double[] estudiante2={3.0, 5.0, 5.0};
-        double[] estudiante3={2.9, 2.8, 3.1};
-        String obtenerEstudiante=docente.obtenerEstudianteNotasMayor4(estudiante1,  estudiante2, estudiante3);
-        System.out.println(obtenerEstudiante);
-
-        definitiva1 =4.7;
-        definitiva2 =4.5;
-        definitiva3 =2.9;
-        double notaMaxima=docente.obtenerNotaMaxima(definitiva1, definitiva2, definitiva3);
-        System.out.println("La nota maxima es: "+notaMaxima);
-
-        Estudiante estudiante=new Estudiante("Raul", 18, "jfeoa", 9, 5.0, 4.8, 4.9);
-        nota1=5.0;
-        nota2=4.8;
-        nota3=4.9;
-        double calcularDefinitiva=estudiante.calcularNotaDefinitiva(nota1, nota2, nota3);
-        System.out.println("La definitiva es: "+calcularDefinitiva);
+    public static void calcularPromedioEdad(Estudiante estudiante1, Estudiante eestudiante2, Estudiante estudiante3, Docente docente) {
+        int edadPromedio = docente.calcularPromedioEdad(estudiante1.getEdad(), eestudiante2.getEdad(), estudiante3.getEdad());
+        System.out.println("La edad promedio es: " + edadPromedio);
+    }
+    public static void calcularPromedioNota1(Estudiante estudiante1, Estudiante estudiante2, Estudiante estudiante3, Docente docente) {
+        double promedioNota1=docente.calcularPromedioNota1(estudiante1.getNota1(), estudiante2.getNota1(), estudiante3.getNota1());
+        System.out.println("El promedio de la nota 1 es " +promedioNota1);
+    }
+    public static void calcularNotaMayorCurso(Estudiante estudiante1, Estudiante estudiante2, Estudiante estudiante3, Docente docente) {
+        double def1 = docente.calcularDefinitivaEstudiante(estudiante1.getNota1(), estudiante1.getNota2(), estudiante1.getNota3());
+        double def2 = docente.calcularDefinitivaEstudiante(estudiante2.getNota1(), estudiante2.getNota2(), estudiante2.getNota3());
+        double def3 = docente.calcularDefinitivaEstudiante(estudiante3.getNota1(), estudiante3.getNota2(), estudiante3.getNota3());
+        double notaMayor= docente.calcularNotaMayorCurso(def1, def2, def3);
+        System.out.println("La nota mayor es " +notaMayor);
+    }
+    public static void calcularNotaMenorCurso(Estudiante estudiante1, Estudiante estudiante2, Estudiante estudiante3, Docente docente) {
+        double def1 = docente.calcularDefinitivaEstudiante(estudiante1.getNota1(), estudiante1.getNota2(), estudiante1.getNota3());
+        double def2 = docente.calcularDefinitivaEstudiante(estudiante2.getNota1(), estudiante2.getNota2(), estudiante2.getNota3());
+        double def3 = docente.calcularDefinitivaEstudiante(estudiante3.getNota1(), estudiante3.getNota2(), estudiante3.getNota3());
+        double notaMenor =docente.calcularNotaMenorCurso(def1, def2, def3);
+        System.out.println("La nota menor es " + notaMenor);
+    }
+    public static void aprobacionCurso(Estudiante estudiante1, Estudiante estudiante2, Estudiante estudiante3, Docente docente) {
+        double def1 = docente.calcularDefinitivaEstudiante(estudiante1.getNota1(), estudiante1.getNota2(), estudiante1.getNota3());
+        double def2 = docente.calcularDefinitivaEstudiante(estudiante2.getNota1(), estudiante2.getNota2(), estudiante2.getNota3());
+        double def3 = docente.calcularDefinitivaEstudiante(estudiante3.getNota1(), estudiante3.getNota2(), estudiante3.getNota3());
+        String aprobados=docente.aprobacionCurso(def1, def2, def3);
+        System.out.println("Aprobados: "+aprobados);
+    }
+    public static void porcentajeAprobados(Estudiante estudiante1, Estudiante estudiante2, Estudiante estudiante3, Docente docente) {
+        double def1 = docente.calcularDefinitivaEstudiante(estudiante1.getNota1(), estudiante1.getNota2(), estudiante1.getNota3());
+        double def2 = docente.calcularDefinitivaEstudiante(estudiante2.getNota1(), estudiante2.getNota2(), estudiante2.getNota3());
+        double def3 = docente.calcularDefinitivaEstudiante(estudiante3.getNota1(), estudiante3.getNota2(), estudiante3.getNota3());
+        double porcentajeAprobados = docente.calcularPorcentajeAprobados(def1, def2, def3);
+        System.out.println("Porcentaje de los aprobados: " + porcentajeAprobados);
+    }
+    public static void porcentajeReprobados(Estudiante estudiante1, Estudiante estudiante2, Estudiante estudiante3, Docente docente) {
+        double def1 = docente.calcularDefinitivaEstudiante(estudiante1.getNota1(), estudiante1.getNota2(), estudiante1.getNota3());
+        double def2 = docente.calcularDefinitivaEstudiante(estudiante2.getNota1(), estudiante2.getNota2(), estudiante2.getNota3());
+        double def3 = docente.calcularDefinitivaEstudiante(estudiante3.getNota1(), estudiante3.getNota2(), estudiante3.getNota3());
+        double porcentajeReprobados = docente.calcularPorcentajeReprobados(def1, def2, def3);
+        System.out.println("Porcentaje de los reprobados: " + porcentajeReprobados);
+    }
+    public static void obtenerEstudianteNotasMayor4(Estudiante estudiante1, Estudiante estudiante2, Estudiante estudiante3, Docente docente) {
+        String estudiante =docente.obtenerEstudianteNotasMayor4(estudiante1.getNota1(), estudiante1.getNota2(), estudiante1.getNota3(),
+                estudiante2.getNota1(), estudiante2.getNota2(), estudiante2.getNota3(),
+                estudiante3.getNota1(), estudiante3.getNota2(), estudiante3.getNota3());
+        System.out.println("Estudiante con todas las notas mayores o iguales a 4: "+ estudiante);
+    }
+    public static void obtenerNotaMaxima(Estudiante estudiante1, Estudiante estudiante2, Estudiante estudiante3, Docente docente) {
+        double def1 = docente.calcularDefinitivaEstudiante(estudiante1.getNota1(), estudiante1.getNota2(), estudiante1.getNota3());
+        double def2 = docente.calcularDefinitivaEstudiante(estudiante2.getNota1(), estudiante2.getNota2(), estudiante2.getNota3());
+        double def3 = docente.calcularDefinitivaEstudiante(estudiante3.getNota1(), estudiante3.getNota2(), estudiante3.getNota3());
+        double notaMaxima=docente.obtenerNotaMaxima(def1, def2, def3);
+        System.out.println("La nota maxima es de: "+notaMaxima);
     }
 }

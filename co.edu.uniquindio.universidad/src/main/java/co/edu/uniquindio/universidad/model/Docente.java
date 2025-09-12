@@ -5,6 +5,8 @@ public class Docente {
     private int edad;
     private String correo;
 
+    public Docente(){}
+
     public Docente(String nombre, int edad, String correo) {
         this.nombre=nombre;
         this.edad=edad;
@@ -99,38 +101,17 @@ public class Docente {
         porcentaje=(porcentaje/3)*100;
         return porcentaje;
     }
-    public String obtenerEstudianteNotasMayor4(double estudiante1[], double estudiante2[], double estudiante3[]) {
-        String mensaje="";
+    public String obtenerEstudianteNotasMayor4(
+            double n1est1, double n2est1, double n3est1,
+            double n1est2, double n2est2, double n3est2,
+            double n1est3, double n2est3, double n3est3) {
 
-        int comprobar=0;
-            for (int i = 0; i < estudiante1.length; i++) {
-                if (estudiante1[i] >= 4.0) {
-                    comprobar++;
-                }
-            }
-            if(comprobar==estudiante1.length) {
-                mensaje += "El estudiante 1 tiene todas las notas mayores o iguales a 4 \n";
-            }
-        int comprobar1=0;
-            for (int i = 0; i < estudiante2.length; i++) {
-                if (estudiante2[i] >= 4.0) {
-                    comprobar1++;
-                }
-            }
-        if(comprobar1==estudiante2.length) {
-            mensaje += "El estudiante 2 tiene todas las notas mayores o iguales a 4 \n";
-        }
-        int comprobar3 =0;
-            for (int i = 0; i < estudiante3.length; i++) {
-                if (estudiante3[i] >= 4.0) {
-                    comprobar3++;
-                }
-            }
-        if(comprobar3==estudiante3.length) {
-            mensaje += "El estudiante 3 tiene todas las notas mayores o iguales a 4 \n";
-        }
-        return mensaje;
+        if(n1est1 >=4 && n2est1 >=4 && n3est1 >=4) return "Estudiante 1";
+        if(n1est2 >=4 && n2est2 >=4 && n3est2 >=4) return "Estudiante 2";
+        if(n1est3 >=4 && n2est3 >=4 && n3est3 >=4) return "Estudiante 3";
+        return "Ninguno";
     }
+
     public double obtenerNotaMaxima(double definitiva1, double definitiva2, double definitiva3) {
         if(definitiva1>definitiva2 && definitiva1>definitiva3) {
             return definitiva1;
