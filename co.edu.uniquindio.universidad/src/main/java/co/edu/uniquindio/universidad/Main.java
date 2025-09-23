@@ -4,6 +4,28 @@ import co.edu.uniquindio.universidad.model.*;
 
 public class Main {
     public static void main(String[] args) {
+        Universidad universidad = inicializaDatos();
+
+        Estudiante estudiante = universidad.getListaEstudiantes().get(0);
+        estudiante.getOwnedByUniversidad();
+
+        calcularDefinitivaEstudiante(estudiante1, docente);
+        calcularPromedioCurso(estudiante1, estudiante2, estudiante3, docente);
+        calcularPromedioEdad(estudiante1, estudiante2, estudiante3, docente);
+        calcularPromedioNota1(estudiante1, estudiante2, estudiante3, docente);
+        calcularNotaMayorCurso(estudiante1, estudiante2, estudiante3, docente);
+        calcularNotaMenorCurso(estudiante1, estudiante2, estudiante3, docente);
+        aprobacionCurso(estudiante1, estudiante2, estudiante3, docente);
+        porcentajeAprobados(estudiante1, estudiante2, estudiante3, docente);
+        porcentajeReprobados(estudiante1, estudiante2, estudiante3, docente);
+        obtenerEstudianteNotasMayor4(estudiante1,  estudiante2, estudiante3, docente);
+        obtenerNotaMaxima(estudiante1,  estudiante2, estudiante3, docente);
+
+    }
+
+    private static Universidad inicializaDatos() {
+        Universidad universidad = inicializaDatos();
+
         Estudiante estudiante1 = new Estudiante();
         estudiante1.setNombre("Raul");
         estudiante1.setEdad(19);
@@ -32,20 +54,11 @@ public class Main {
         docente.setNombre("Pedro");
         docente.setEdad(35);
         docente.setCorreo("sbvi");
-
-        calcularDefinitivaEstudiante(estudiante1, docente);
-        calcularPromedioCurso(estudiante1, estudiante2, estudiante3, docente);
-        calcularPromedioEdad(estudiante1, estudiante2, estudiante3, docente);
-        calcularPromedioNota1(estudiante1, estudiante2, estudiante3, docente);
-        calcularNotaMayorCurso(estudiante1, estudiante2, estudiante3, docente);
-        calcularNotaMenorCurso(estudiante1, estudiante2, estudiante3, docente);
-        aprobacionCurso(estudiante1, estudiante2, estudiante3, docente);
-        porcentajeAprobados(estudiante1, estudiante2, estudiante3, docente);
-        porcentajeReprobados(estudiante1, estudiante2, estudiante3, docente);
-        obtenerEstudianteNotasMayor4(estudiante1,  estudiante2, estudiante3, docente);
-        obtenerNotaMaxima(estudiante1,  estudiante2, estudiante3, docente);
-
+        Rector rector = new Rector();
+        rector.setNombre("Rodolfo");
+        rector.setApellido("Aifi");
     }
+
     public static void calcularDefinitivaEstudiante(Estudiante estudiante, Docente docente){
         double definitiva=docente.calcularDefinitivaEstudiante(estudiante.getNota1(), estudiante.getNota2(), estudiante.getNota3());
         System.out.println("La definitiva es: "+definitiva);

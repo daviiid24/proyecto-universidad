@@ -4,6 +4,7 @@ public class Docente {
     private String nombre;
     private int edad;
     private String correo;
+    private Universidad ownedByUniversidad;
 
     public Docente(){}
 

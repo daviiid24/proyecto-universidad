@@ -8,6 +8,7 @@ public class Estudiante {
     private double nota1;
     private double nota2;
     private double nota3;
+    private Universidad ownedByUniversidad;
 
     public Estudiante(){}
 
