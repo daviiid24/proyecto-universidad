@@ -1,3 +1,5 @@
+package co.edu.uniquindio.universidad;
+
 import co.edu.uniquindio.universidad.model.*;
 
 import java.util.Scanner;
@@ -10,6 +12,12 @@ public class Main {
         //Estudiante estudiante = universidad.getListaEstudiantes().get(0);
         //estudiante.getOwnedByUniversidad();
 
+        //CRUD ESTUDIANTE
+        crearEstudiante(universidad);
+        eliminarEstudiante(universidad);
+        actualizarEstudiante(universidad);
+        obtenerEstudiante(universidad);
+                /*
                 int opcionSeleccionada;
 
                 do {
@@ -51,87 +59,163 @@ public class Main {
 //obtenerEstudianteNotasMayor4(estudiante1,estudiante2, estudiante3, docente);
 //obtenerNotaMaxima(estudiante1,  estudiante2, estudiante3, docente);
 //
+*/
+    }
+
+    private static void crearEstudiante(Universidad universidad) {
+        String nombre = leerStringConsola("Ingrese el nombre del estudiante: ");
+        String apellido = leerStringConsola("Ingrese el apellido del estudiante: ");
+        int edad = leerEntero("Ingrese la edad del estudiante: ");
+        String identificacion = leerStringConsola(("Ingrese la identificacion del estudiante:"));
+        double nota1 = leerDoubleConsola("Ingrese la nota 1: ");
+        double nota2 = leerDoubleConsola("Ingrese la nota 2: ");
+        double nota3 = leerDoubleConsola("Ingrese la nota 3: ");
+
+        boolean resultado = universidad.crearEstudiante(nombre, apellido, edad, nota1, nota2, nota3, identificacion);
+
+        if (resultado) {
+            System.out.println("Estudiante creado con exito");
+        } else {
+            System.out.println("Estudiante no creado");
+        }
+    }
+
+    private static void eliminarEstudiante(Universidad universidad) {
+        String idEliminar=leerStringConsola("Ingrese el id del estudiante a eliminar:");
+        boolean resultado=universidad.eliminarEstudiante(idEliminar);
+        if (resultado) {
+            System.out.println("Estudiante eliminado con exito");
+        } else {
+            System.out.println("Estudiante no eliminado");
+        }
+    }
+
+    private static void actualizarEstudiante(Universidad universidad) {
+        String nombre = leerStringConsola("Ingrese el nombre del estudiante: ");
+        String apellido = leerStringConsola("Ingrese el apellido del estudiante: ");
+        int edad = leerEntero("Ingrese la edad del estudiante: ");
+        String identificacion = leerStringConsola(("Ingrese la identificacion del estudiante:"));
+        double nota1 = leerDoubleConsola("Ingrese la nota 1: ");
+        double nota2 = leerDoubleConsola("Ingrese la nota 2: ");
+        double nota3 = leerDoubleConsola("Ingrese la nota 3: ");
+
+        boolean resultado = universidad.actualizarEstudiante(nombre, apellido, edad, nota1, nota2, nota3, identificacion);
+
+        if (resultado) {
+            System.out.println("Estudiante actualizado con exito");
+        } else {
+            System.out.println("Estudiante no actualizado");
+        }
+    }
+
+    public static void obtenerEstudiante(Universidad universidad) {
+        String idBuscar=leerStringConsola("Ingrese el id del estudiante a buscar:");
+        Estudiante resultado=universidad.obtenerEstudiante(idBuscar);
+        if (resultado!= null) {
+            System.out.println("Estudiante encontrado con exito");
+        } else {
+            System.out.println("Estudiante no encontrado");
+        }
     }
 
     private static Universidad inicializaDatos() {
-        Universidad universidad = new Universidad("Uniquindio");
+        Universidad universidad = new Universidad();
+        Estudiante estudiante1 = new Estudiante();
+        estudiante1.setNombre("Pedro");
+        estudiante1.setApellido("Perez");
+        estudiante1.setEdad(20);
+        estudiante1.setNota1(3.0);
+        estudiante1.setNota1(4.0);
+        estudiante1.setNota1(2.0);
+        estudiante1.setIdentificacion("1094");
+        Estudiante estudiante2 = new Estudiante();
+        estudiante2.setNombre("Ana");
+        estudiante2.setApellido("Arias");
+        estudiante2.setEdad(23);
+        estudiante2.setNota1(2.0);
+        estudiante2.setNota1(3.0);
+        estudiante2.setNota1(1.0);
+        estudiante2.setIdentificacion("1095");
+        Estudiante estudiante3 = new Estudiante();
+        estudiante3.setNombre("Carlos");
+        estudiante3.setApellido("Perez");
+        estudiante3.setEdad(20);
+        estudiante3.setNota1(3.0);
+        estudiante3.setNota1(3.0);
+        estudiante3.setNota1(3.0);
+        estudiante3.setIdentificacion("1096");
+
+        Docente docente = new Docente();
+        docente.setNombre("Pedro");
+        docente.setEdad(40);
+        docente.setCorreo("pedro@gmail.com");
+
+        universidad.getListaEstudiantes().add(estudiante1);
+        universidad.getListaEstudiantes().add(estudiante2);
+        universidad.getListaEstudiantes().add(estudiante3);
+        universidad.getListaDocentes().add(docente);
+
         return universidad;
     }
 
-private static void mostrarMenu() {
-    System.out.println("\n===== MENÚ UNIVERSIDAD =====");
-    System.out.println("1 - Crear estudiante");
-    System.out.println("2 - Crear docente");
-    System.out.println("3 - Crear curso");
-    System.out.println("4 - Salir");
-}
+    private static void mostrarMenu() {
+        System.out.println("\n===== MENÚ UNIVERSIDAD =====");
+        System.out.println("1 - Crear estudiante");
+        System.out.println("2 - Crear docente");
+        System.out.println("3 - Crear curso");
+        System.out.println("4 - Salir");
+    }
 
-private static int leerEntero(String mensaje) {
-    int dato = 0;
-    String captura = "";
-    System.out.println(mensaje);
-    Scanner teclado = new Scanner(System.in);
-    captura = teclado.nextLine();
-    dato = Integer.parseInt(captura);
-    return dato;
-}
-public static String leerStringConsola(String mensaje)
-{
-    String captura="";
-    System.out.println(mensaje);
-    Scanner teclado = new Scanner(System.in);
-    captura = teclado.nextLine();
-    return captura;
-}
-public static double leerDoubleConsola(String mensaje)
-{
-    double dato=0;
-    String captura="";
-    System.out.println(mensaje);
-    Scanner teclado = new Scanner(System.in);
-    captura = teclado.nextLine();
-    dato=Double.parseDouble(captura);
-    return dato;
-}
+    private static int leerEntero(String mensaje) {
+        int dato = 0;
+        String captura = "";
+        System.out.println(mensaje);
+        Scanner teclado = new Scanner(System.in);
+        captura = teclado.nextLine();
+        dato = Integer.parseInt(captura);
+        return dato;
+    }
+
+    public static String leerStringConsola(String mensaje) {
+        String captura = "";
+        System.out.println(mensaje);
+        Scanner teclado = new Scanner(System.in);
+        captura = teclado.nextLine();
+        return captura;
+    }
+
+    public static double leerDoubleConsola(String mensaje) {
+        double dato = 0;
+        String captura = "";
+        System.out.println(mensaje);
+        Scanner teclado = new Scanner(System.in);
+        captura = teclado.nextLine();
+        dato = Double.parseDouble(captura);
+        return dato;
+    }
 
 
-public static String crearEstudiante() {
-    String nombre = leerStringConsola("Ingrese el nombre del estudiante: ");
-    int edad = leerEntero("Ingrese la edad del estudiante: ");
-    String correo = leerStringConsola("Ingrese el correo del estudiante: ");
-    int semestre = leerEntero("Ingrese el semestre del estudiante: ");
-    double nota1 = leerDoubleConsola("Ingrese la nota 1: ");
-    double nota2 = leerDoubleConsola("Ingrese la nota 2: ");
-    double nota3 = leerDoubleConsola("Ingrese la nota 3: ");
+    public static String crearDocente() {
+        String nombre = leerStringConsola("Ingrese el nombre del docente: ");
+        int edad = leerEntero("Ingrese la edad del docente: ");
+        String correo = leerStringConsola("Ingrese el correo del docente: ");
 
-    Estudiante estudiante1 = new Estudiante(nombre, edad, correo, semestre, nota1, nota2, nota3);
+        Docente docente1 = new Docente(nombre, edad, correo);
 
-    return estudiante1.toString();
-}
+        return docente1.toString();
+    }
 
-public static String crearDocente() {
-    String nombre = leerStringConsola("Ingrese el nombre del docente: ");
-    int edad = leerEntero("Ingrese la edad del docente: ");
-    String correo = leerStringConsola("Ingrese el correo del docente: ");
+    public static String crearCurso() {
+        String nombre = leerStringConsola("Ingrese el nombre del curso: ");
+        String semestre = leerStringConsola("Ingrese el semestre del curso: ");
+        String grupo = leerStringConsola("Ingrese el grupo del curso: ");
+        double creditos = leerDoubleConsola("Ingrese los créditos del curso: ");
+        String jornada = leerStringConsola("Ingrese la jornada del curso: ");
 
-    Docente docente1 = new Docente(nombre, edad, correo);
+        Curso curso1 = new Curso(nombre, semestre, grupo, creditos, jornada, null);
 
-    return docente1.toString();
-}
-
-public static String crearCurso() {
-    String nombre = leerStringConsola("Ingrese el nombre del curso: ");
-    String semestre = leerStringConsola("Ingrese el semestre del curso: ");
-    String grupo = leerStringConsola("Ingrese el grupo del curso: ");
-    double creditos = leerDoubleConsola("Ingrese los créditos del curso: ");
-    String jornada = leerStringConsola("Ingrese la jornada del curso: ");
-
-    Curso curso1 = new Curso(nombre, semestre, grupo, creditos, jornada, null);
-
-    return curso1.toString();
-}
-
-void main() {
+        return curso1.toString();
+    }
 }
 
 /*public static void calcularDefinitivaEstudiante(Estudiante estudiante, Docente docente){

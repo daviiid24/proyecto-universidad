@@ -1,25 +1,17 @@
 package co.edu.uniquindio.universidad.model;
 
 public class Estudiante {
+
     private String nombre;
+    private String apellido;
     private int edad;
-    private String correo;
-    private int semestre;
+    private String identificacion;
     private double nota1;
     private double nota2;
     private double nota3;
     private Universidad ownedByUniversidad;
 
-    public Estudiante(){}
-
-    public Estudiante(String nombre, int edad, String correo, int semestre, double nota1, double nota2, double nota3) {
-        this.nombre = nombre;
-        this.edad = edad;
-        this.correo = correo;
-        this.semestre = semestre;
-        this.nota1 = nota1;
-        this.nota2 = nota2;
-        this.nota3 = nota3;
+    public Estudiante() {
     }
 
     public String getNombre() {
@@ -30,28 +22,20 @@ public class Estudiante {
         this.nombre = nombre;
     }
 
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
     public int getEdad() {
         return edad;
     }
 
     public void setEdad(int edad) {
         this.edad = edad;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public int getSemestre() {
-        return semestre;
-    }
-
-    public void setSemestre(int semestre) {
-        this.semestre = semestre;
     }
 
     public double getNota1() {
@@ -76,6 +60,22 @@ public class Estudiante {
 
     public void setNota3(double nota3) {
         this.nota3 = nota3;
+    }
+
+    public String getIdentificacion() {
+        return identificacion;
+    }
+
+    public void setIdentificacion(String identificacion) {
+        this.identificacion = identificacion;
+    }
+
+    public Universidad getOwnedByUniversidad() {
+        return ownedByUniversidad;
+    }
+
+    public void setOwnedByUniversidad(Universidad ownedByUniversidad) {
+        this.ownedByUniversidad = ownedByUniversidad;
     }
     public double calcularNotaDefinitiva(double nota1, double nota2, double nota3) {
         double definitiva=0;
