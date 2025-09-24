@@ -4,14 +4,16 @@ public class Docente {
     private String nombre;
     private int edad;
     private String correo;
+    private String identificacion;
     private Universidad ownedByUniversidad;
 
     public Docente(){}
 
-    public Docente(String nombre, int edad, String correo) {
+    public Docente(String nombre, int edad, String correo, String identificacion) {
         this.nombre=nombre;
         this.edad=edad;
         this.correo=correo;
+        this.identificacion=identificacion;
     }
     public String getNombre() {
         return nombre;
@@ -30,6 +32,13 @@ public class Docente {
     }
     public void setCorreo(String correo) {
         this.correo=correo;
+    }
+    public String getIdentificacion() {
+        return identificacion;
+    }
+
+    public void setIdentificacion(String identificacion) {
+        this.identificacion = identificacion;
     }
     public double calcularDefinitivaEstudiante(double nota1, double nota2, double nota3){
         return (nota1+nota2+nota3) / 3;

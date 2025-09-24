@@ -6,17 +6,19 @@ public class Curso {
     private String grupo;
     private double creditos;
     private String jornada;
+    private String identificacion;
     private Universidad ownedByUniversidad;
     public Curso(){
 
     }
 
-    public Curso(String nombre, String semestre, String grupo, double creditos, String jornada, Universidad ownedByUniversidad) {
+    public Curso(String nombre, String semestre, String grupo, double creditos, String jornada, String identificacion, Universidad ownedByUniversidad) {
         this.nombre = nombre;
         this.semestre = semestre;
         this.grupo = grupo;
         this.creditos = creditos;
         this.jornada = jornada;
+        this.identificacion = identificacion;
         this.ownedByUniversidad = ownedByUniversidad;
     }
 
@@ -58,6 +60,14 @@ public class Curso {
 
     public void setJornada(String jornada) {
         this.jornada = jornada;
+    }
+
+    public String getIdentificacion() {
+        return identificacion;
+    }
+
+    public void setIdentificacion(String identificacion) {
+        this.identificacion = identificacion;
     }
 
     public Universidad getOwnedByUniversidad() {

@@ -17,6 +17,16 @@ public class Main {
         eliminarEstudiante(universidad);
         actualizarEstudiante(universidad);
         obtenerEstudiante(universidad);
+        //CRUD DOCENTE
+        crearDocente(universidad);
+        eliminarDocente(universidad);
+        actualizarDocente(universidad);
+        obtenerDocente(universidad);
+        //CRUD CURSO
+        crearCurso(universidad);
+        eliminarCurso(universidad);
+        actualizarCurso(universidad);
+        obtenerCurso(universidad);
                 /*
                 int opcionSeleccionada;
 
@@ -81,8 +91,8 @@ public class Main {
     }
 
     private static void eliminarEstudiante(Universidad universidad) {
-        String idEliminar=leerStringConsola("Ingrese el id del estudiante a eliminar:");
-        boolean resultado=universidad.eliminarEstudiante(idEliminar);
+        String idEliminar = leerStringConsola("Ingrese el id del estudiante a eliminar:");
+        boolean resultado = universidad.eliminarEstudiante(idEliminar);
         if (resultado) {
             System.out.println("Estudiante eliminado con exito");
         } else {
@@ -109,14 +119,119 @@ public class Main {
     }
 
     public static void obtenerEstudiante(Universidad universidad) {
-        String idBuscar=leerStringConsola("Ingrese el id del estudiante a buscar:");
-        Estudiante resultado=universidad.obtenerEstudiante(idBuscar);
-        if (resultado!= null) {
+        String idBuscar = leerStringConsola("Ingrese el id del estudiante a buscar:");
+        Estudiante resultado = universidad.obtenerEstudiante(idBuscar);
+        if (resultado != null) {
             System.out.println("Estudiante encontrado con exito");
         } else {
             System.out.println("Estudiante no encontrado");
         }
     }
+
+    private static void crearDocente(Universidad universidad) {
+        String nombre = leerStringConsola("Ingrese el nombre del docente: ");
+        int edad = leerEntero("Ingrese la edad del docente: ");
+        String correo = leerStringConsola("Ingrese el correo del docente: ");
+        String identificacion = leerStringConsola("Ingrese la identificacion del docente: ");
+
+        boolean resultado = universidad.crearDocente(nombre, edad, correo, identificacion);
+
+        if (resultado) {
+            System.out.println("Docente creado con exito");
+        } else {
+            System.out.println("Docente no creado");
+        }
+    }
+
+    private static void eliminarDocente(Universidad universidad) {
+        String idEliminar = leerStringConsola("Ingrese el id del docente a eliminar:");
+        boolean resultado = universidad.eliminarDocente(idEliminar);
+        if (resultado) {
+            System.out.println("Docente eliminado con exito");
+        } else {
+            System.out.println("Docente no eliminado");
+        }
+    }
+
+    private static void actualizarDocente(Universidad universidad) {
+        String nombre = leerStringConsola("Ingrese el nombre del docente: ");
+        int edad = leerEntero("Ingrese la edad del docente: ");
+        String correo = leerStringConsola("Ingrese el correo del docente: ");
+        String identificacion = leerStringConsola("Ingrese la identificacion del docente: ");
+
+        boolean resultado = universidad.actualizarDocente(nombre, edad, correo, identificacion);
+
+        if (resultado) {
+            System.out.println("Docente actualizado con exito");
+        } else {
+            System.out.println("Docente no actualizado");
+        }
+    }
+
+    public static void obtenerDocente(Universidad universidad) {
+        String idBuscar = leerStringConsola("Ingrese el id del docente a buscar:");
+        Docente resultado = universidad.obtenerDocente(idBuscar);
+        if (resultado != null) {
+            System.out.println("Docente encontrado con exito");
+        } else {
+            System.out.println("Docente no encontrado");
+        }
+    }
+
+    private static void crearCurso(Universidad universidad) {
+        String nombre = leerStringConsola("Ingrese el nombre del curso: ");
+        String semestre = leerStringConsola("Ingrese el semestre del curso: ");
+        String grupo = leerStringConsola("Ingrese el grupo del curso: ");
+        double creditos = leerDoubleConsola("Ingrese los creditos: ");
+        String jornada = leerStringConsola("Ingrese la jornada: ");
+        String identificacion = leerStringConsola("Ingrese la identificacion del curso: ");
+
+        boolean resultado = universidad.crearDocente(nombre, semestre, grupo, creditos, jornada, identificacion);
+
+        if (resultado) {
+            System.out.println("Curso creado con exito");
+        } else {
+            System.out.println("Curso no creado");
+        }
+    }
+
+    private static void eliminarCurso(Universidad universidad) {
+        String idEliminar = leerStringConsola("Ingrese el id del curso a eliminar:");
+        boolean resultado = universidad.eliminarCurso(idEliminar);
+        if (resultado) {
+            System.out.println("Curso eliminado con exito");
+        } else {
+            System.out.println("Curso no eliminado");
+        }
+    }
+
+    private static void actualizarCurso(Universidad universidad) {
+        String nombre = leerStringConsola("Ingrese el nombre del curso: ");
+        String semestre = leerStringConsola("Ingrese el semestre del curso: ");
+        String grupo = leerStringConsola("Ingrese el grupo del curso: ");
+        double creditos = leerDoubleConsola("Ingrese los creditos: ");
+        String jornada = leerStringConsola("Ingrese la jornada: ");
+        String identificacion = leerStringConsola("Ingrese la identificacion del curso: ");
+
+        boolean resultado = universidad.actualizarCurso(nombre, semestre, grupo, creditos, jornada, identificacion);
+
+        if (resultado) {
+            System.out.println("Curso actualizado con exito");
+        } else {
+            System.out.println("Curso no actualizado");
+        }
+    }
+
+    public static void obtenerCurso(Universidad universidad) {
+        String idBuscar = leerStringConsola("Ingrese el id del curso a buscar:");
+        Curso resultado = universidad.obtenerCurso(idBuscar);
+        if (resultado != null) {
+            System.out.println("Curso encontrado con exito");
+        } else {
+            System.out.println("Curso no encontrado");
+        }
+    }
+
 
     private static Universidad inicializaDatos() {
         Universidad universidad = new Universidad();
@@ -193,30 +308,8 @@ public class Main {
         dato = Double.parseDouble(captura);
         return dato;
     }
-
-
-    public static String crearDocente() {
-        String nombre = leerStringConsola("Ingrese el nombre del docente: ");
-        int edad = leerEntero("Ingrese la edad del docente: ");
-        String correo = leerStringConsola("Ingrese el correo del docente: ");
-
-        Docente docente1 = new Docente(nombre, edad, correo);
-
-        return docente1.toString();
-    }
-
-    public static String crearCurso() {
-        String nombre = leerStringConsola("Ingrese el nombre del curso: ");
-        String semestre = leerStringConsola("Ingrese el semestre del curso: ");
-        String grupo = leerStringConsola("Ingrese el grupo del curso: ");
-        double creditos = leerDoubleConsola("Ingrese los créditos del curso: ");
-        String jornada = leerStringConsola("Ingrese la jornada del curso: ");
-
-        Curso curso1 = new Curso(nombre, semestre, grupo, creditos, jornada, null);
-
-        return curso1.toString();
-    }
 }
+
 
 /*public static void calcularDefinitivaEstudiante(Estudiante estudiante, Docente docente){
 
