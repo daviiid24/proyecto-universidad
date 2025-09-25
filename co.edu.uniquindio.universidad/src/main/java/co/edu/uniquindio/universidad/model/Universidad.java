@@ -223,4 +223,44 @@ public class Universidad {
         return cursoEncontrado;
     }
 
-}
+    public boolean crearRector(String nombre, String apellido, String identificacion) {
+
+        if(this.rector == null) {
+            Rector rector= new Rector();
+            rector.setNombre(nombre);
+            rector.setApellido(apellido);
+            rector.setIdentificacion(identificacion);
+            this.rector=rector;
+
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public boolean eliminarRector() {
+        if(this.rector!=null) {
+            this.rector=null;
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public boolean actualizarRector(String nombre, String apellido, String identificacion) {
+
+        if(this.rector!=null) {
+            rector.setNombre(nombre);
+            rector.setApellido(apellido);
+            rector.setIdentificacion(identificacion);
+
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public Rector obtenerRector() {
+        return this.rector;
+            }
+    }
+

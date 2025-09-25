@@ -40,6 +40,15 @@ public class Docente {
     public void setIdentificacion(String identificacion) {
         this.identificacion = identificacion;
     }
+
+    public Universidad getOwnedByUniversidad() {
+        return ownedByUniversidad;
+    }
+
+    public void setOwnedByUniversidad(Universidad ownedByUniversidad) {
+        this.ownedByUniversidad = ownedByUniversidad;
+    }
+
     public double calcularDefinitivaEstudiante(double nota1, double nota2, double nota3){
         return (nota1+nota2+nota3) / 3;
     }

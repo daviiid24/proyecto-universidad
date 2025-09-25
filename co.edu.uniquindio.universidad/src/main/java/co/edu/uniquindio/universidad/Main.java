@@ -9,55 +9,143 @@ public class Main {
     public static void main(String[] args) {
         Universidad universidad = inicializaDatos();
 
-        //Estudiante estudiante = universidad.getListaEstudiantes().get(0);
-        //estudiante.getOwnedByUniversidad();
+        int opcionPrincipal;
 
-        //CRUD ESTUDIANTE
-        crearEstudiante(universidad);
-        eliminarEstudiante(universidad);
-        actualizarEstudiante(universidad);
-        obtenerEstudiante(universidad);
-        //CRUD DOCENTE
-        crearDocente(universidad);
-        eliminarDocente(universidad);
-        actualizarDocente(universidad);
-        obtenerDocente(universidad);
-        //CRUD CURSO
-        crearCurso(universidad);
-        eliminarCurso(universidad);
-        actualizarCurso(universidad);
-        obtenerCurso(universidad);
-                /*
-                int opcionSeleccionada;
+        do {
+            opcionPrincipal = mostrarMenuPrincipal();
 
-                do {
-                    mostrarMenu();
-                    opcionSeleccionada = leerEntero("Ingrese una opción: ");
-
-                    switch (opcionSeleccionada) {
-                        case 1:
-                            String respuesta = crearEstudiante();
-                            System.out.println(respuesta);
-                            break;
-                        case 2:
-                            String respuesta1 = crearDocente();
-                            System.out.println(respuesta1);
-                            break;
-                        case 3:
-                            String respuesta2 = crearCurso();
-                            System.out.println(respuesta2);
-                            break;
-                        case 4:
-                            System.out.println("Saliendo de la aplicación...");
-                            break;
-                        default:
-                            System.out.println("Opción no válida, intente de nuevo.");
-                    }
-                } while (opcionSeleccionada != 4);
+            switch (opcionPrincipal) {
+                case 1: // Estudiantes
+                    menuEstudiantes(universidad);
+                    break;
+                case 2: // Docentes
+                    menuDocentes(universidad);
+                    break;
+                case 3: // Cursos
+                    menuCursos(universidad);
+                    break;
+                case 4: // Rector
+                    menuRector(universidad);
+                    break;
+                    /*
+                case 5: // Métodos (estadísticas, cálculos, etc.)
+                    menuMetodos(universidad);
+                    break;
+                    */
+                case 6:
+                    System.out.println("Saliendo del sistema...");
+                    break;
+                default:
+                    System.out.println("Opción no válida, intente de nuevo.");
             }
+        } while (opcionPrincipal != 6);
+    }
 
-            //
-       //calcularDefinitivaEstudiante(estudiante1, docente);
+    private static int mostrarMenuPrincipal() {
+        System.out.println("\n===== MENÚ PRINCIPAL =====");
+        System.out.println("1 - Estudiantes");
+        System.out.println("2 - Docentes");
+        System.out.println("3 - Cursos");
+        System.out.println("4 - Rector");
+        System.out.println("5 - Métodos");
+        System.out.println("6 - Salir");
+        return leerEntero("Seleccione una opción: ");
+    }
+
+    private static void menuEstudiantes(Universidad universidad) {
+        int opcion;
+        do {
+            System.out.println("\n--- CRUD ESTUDIANTES ---");
+            System.out.println("1 - Crear");
+            System.out.println("2 - Eliminar");
+            System.out.println("3 - Actualizar");
+            System.out.println("4 - Obtener");
+            System.out.println("5 - Salir");
+            opcion = leerEntero("Seleccione una opción: ");
+
+            switch (opcion) {
+                case 1 -> crearEstudiante(universidad);
+                case 2 -> eliminarEstudiante(universidad);
+                case 3 -> actualizarEstudiante(universidad);
+                case 4 -> obtenerEstudiante(universidad);
+                case 5 -> System.out.println("Saliendo del menú estudiantes...");
+                default -> System.out.println("Opción inválida.");
+            }
+        } while (opcion != 5);
+    }
+
+    private static void menuDocentes(Universidad universidad) {
+        int opcion;
+        do {
+            System.out.println("\n--- CRUD DOCENTES ---");
+            System.out.println("1 - Crear");
+            System.out.println("2 - Eliminar");
+            System.out.println("3 - Actualizar");
+            System.out.println("4 - Obtener");
+            System.out.println("5 - Salir");
+            opcion = leerEntero("Seleccione una opción: ");
+
+            switch (opcion) {
+                case 1 -> crearDocente(universidad);
+                case 2 -> eliminarDocente(universidad);
+                case 3 -> actualizarDocente(universidad);
+                case 4 -> obtenerDocente(universidad);
+                case 5 -> System.out.println("Saliendo del menú docentes...");
+                default -> System.out.println("Opción inválida.");
+            }
+        } while (opcion != 5);
+    }
+
+    private static void menuCursos(Universidad universidad) {
+        int opcion;
+        do {
+            System.out.println("\n--- CRUD CURSOS ---");
+            System.out.println("1 - Crear");
+            System.out.println("2 - Eliminar");
+            System.out.println("3 - Actualizar");
+            System.out.println("4 - Obtener");
+            System.out.println("5 - Salir");
+            opcion = leerEntero("Seleccione una opción: ");
+
+            switch (opcion) {
+                case 1 -> crearCurso(universidad);
+                case 2 -> eliminarCurso(universidad);
+                case 3 -> actualizarCurso(universidad);
+                case 4 -> obtenerCurso(universidad);
+                case 5 -> System.out.println("Saliendo del menú cursos...");
+                default -> System.out.println("Opción inválida.");
+            }
+        } while (opcion != 5);
+    }
+
+    private static void menuRector(Universidad universidad) {
+        int opcion;
+        do {
+            System.out.println("\n--- CRUD RECTOR ---");
+            System.out.println("1 - Crear");
+            System.out.println("2 - Eliminar");
+            System.out.println("3 - Actualizar");
+            System.out.println("4 - Obtener");
+            System.out.println("5 - Salir");
+            opcion = leerEntero("Seleccione una opción: ");
+
+            switch (opcion) {
+                case 1 -> crearRector(universidad);
+                case 2 -> eliminarRector(universidad);
+                case 3 -> actualizarRector(universidad);
+                case 4 -> obtenerRector(universidad);
+                case 5 -> System.out.println("Saliendo del menú rector...");
+                default -> System.out.println("Opción inválida.");
+            }
+        } while (opcion != 5);
+    }
+
+
+    //Estudiante estudiante = universidad.getListaEstudiantes().get(0);
+    //estudiante.getOwnedByUniversidad();
+
+    //
+    //calcularDefinitivaEstudiante(estudiante1, docente);
 //calcularPromedioCurso(estudiante1, estudiante2, estudiante3, docente);
 //calcularPromedioEdad(estudiante1, estudiante2, estudiante3, docente);
 //calcularPromedioNota1(estudiante1, estudiante2, estudiante3, docente);
@@ -69,8 +157,7 @@ public class Main {
 //obtenerEstudianteNotasMayor4(estudiante1,estudiante2, estudiante3, docente);
 //obtenerNotaMaxima(estudiante1,  estudiante2, estudiante3, docente);
 //
-*/
-    }
+
 
     private static void crearEstudiante(Universidad universidad) {
         String nombre = leerStringConsola("Ingrese el nombre del estudiante: ");
@@ -186,7 +273,7 @@ public class Main {
         String jornada = leerStringConsola("Ingrese la jornada: ");
         String identificacion = leerStringConsola("Ingrese la identificacion del curso: ");
 
-        boolean resultado = universidad.crearDocente(nombre, semestre, grupo, creditos, jornada, identificacion);
+        boolean resultado = universidad.crearCurso(nombre, semestre, grupo, creditos, jornada, identificacion);
 
         if (resultado) {
             System.out.println("Curso creado con exito");
@@ -232,6 +319,53 @@ public class Main {
         }
     }
 
+
+    private static void crearRector(Universidad universidad) {
+        String nombre = leerStringConsola("Ingrese el nombre del rector: ");
+        String apellido = leerStringConsola("Ingrese el apellido del rector: ");
+        String identificacion = leerStringConsola("Ingrese la identificacion del rector: ");
+
+        boolean resultado = universidad.crearRector(nombre, apellido, identificacion);
+
+        if (resultado) {
+            System.out.println("Rector creado con exito");
+        } else {
+            System.out.println("Rector no creado");
+        }
+    }
+
+    private static void eliminarRector(Universidad universidad) {
+
+        boolean resultado = universidad.eliminarRector();
+        if (resultado) {
+            System.out.println("Rector eliminado con exito");
+        } else {
+            System.out.println("Rector no eliminado");
+        }
+    }
+
+    private static void actualizarRector(Universidad universidad) {
+        String nombre = leerStringConsola("Ingrese el nombre del rector: ");
+        String apellido = leerStringConsola("Ingrese el apellido del rector: ");
+        String identificacion = leerStringConsola("Ingrese la identificacion del rector: ");
+
+        boolean resultado = universidad.actualizarRector(nombre, apellido, identificacion);
+
+        if (resultado) {
+            System.out.println("Rector actualizado con exito");
+        } else {
+            System.out.println("Rector no actualizado");
+        }
+    }
+
+    public static void obtenerRector(Universidad universidad) {
+        Rector resultado = universidad.obtenerRector();
+        if (resultado != null) {
+            System.out.println("Rector encontrado con exito");
+        } else {
+            System.out.println("Rector no encontrado");
+        }
+    }
 
     private static Universidad inicializaDatos() {
         Universidad universidad = new Universidad();
