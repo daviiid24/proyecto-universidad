@@ -7,10 +7,10 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Universidad universidad = inicializaDatos();
+        Universidad universidad = inicializarDatos();
         Estudiante estudiante = universidad.getListaEstudiantes().get(0);
         estudiante.getOwnedByUniversidad();
-        verificarNombrePalindromo(estudiante, docente);
+
 
         int opcionPrincipal;
 
@@ -30,11 +30,12 @@ public class Main {
                 case 4: // Rector
                     menuRector(universidad);
                     break;
-                    /*
-                case 5: // Métodos (estadísticas, cálculos, etc.)
-                    menuMetodos(universidad);
+
+                case 5:
+                    verificarNombrePalindromo(estudiante1, docente);
+                    // menuMetodos(universidad);
                     break;
-                    */
+
                 case 6:
                     System.out.println("Saliendo del sistema...");
                     break;
@@ -390,7 +391,7 @@ public class Main {
         }
     }
 
-    private static Universidad inicializaDatos() {
+    private static Universidad inicializarDatos() {
         Universidad universidad = new Universidad();
         Estudiante estudiante1 = new Estudiante();
         estudiante1.setNombre("Pedro");
