@@ -140,4 +140,29 @@ public class Docente {
             return definitiva3;
         }
     }
+
+
+    public boolean verificarEdadEsPrimo(int edad) {
+        for (int i = 2; i <= Math.sqrt(edad); i++) {
+            if (edad % i == 0) {
+                return false;
+            }
+        }
+        return true;
+
+    }
+    public boolean verificarNombrePalindromo(String nombre) {
+        String invertido="";
+        nombre = nombre.toLowerCase();
+        for(int i=nombre.length()-1; i>=0; i--){
+            invertido= invertido + nombre.charAt(i);
+        }
+        if (nombre.equals(invertido)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
+
+

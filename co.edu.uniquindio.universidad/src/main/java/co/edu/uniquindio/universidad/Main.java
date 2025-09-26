@@ -8,6 +8,9 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Universidad universidad = inicializaDatos();
+        Estudiante estudiante = universidad.getListaEstudiantes().get(0);
+        estudiante.getOwnedByUniversidad();
+        verificarNombrePalindromo(estudiante, docente);
 
         int opcionPrincipal;
 
@@ -39,6 +42,8 @@ public class Main {
                     System.out.println("Opción no válida, intente de nuevo.");
             }
         } while (opcionPrincipal != 6);
+
+
     }
 
     private static int mostrarMenuPrincipal() {
@@ -140,24 +145,42 @@ public class Main {
         } while (opcion != 5);
     }
 
+    public static void verificarNombrePalindromo(Estudiante estudiante1, Docente docente){
 
-    //Estudiante estudiante = universidad.getListaEstudiantes().get(0);
-    //estudiante.getOwnedByUniversidad();
+        boolean resultado=docente.verificarNombrePalindromo(estudiante1.getNombre());
 
-    //
-    //calcularDefinitivaEstudiante(estudiante1, docente);
-//calcularPromedioCurso(estudiante1, estudiante2, estudiante3, docente);
-//calcularPromedioEdad(estudiante1, estudiante2, estudiante3, docente);
-//calcularPromedioNota1(estudiante1, estudiante2, estudiante3, docente);
-//calcularNotaMayorCurso(estudiante1, estudiante2, estudiante3, docente);
-//calcularNotaMenorCurso(estudiante1, estudiante2, estudiante3, docente);
-//aprobacionCurso(estudiante1, estudiante2, estudiante3, docente);
-//porcentajeAprobados(estudiante1, estudiante2, estudiante3, docente);
-//porcentajeReprobados(estudiante1, estudiante2, estudiante3, docente);
-//obtenerEstudianteNotasMayor4(estudiante1,estudiante2, estudiante3, docente);
-//obtenerNotaMaxima(estudiante1,  estudiante2, estudiante3, docente);
-//
+        if (resultado) {
+            System.out.println("El nombre del estudiante es palindromo:");
+        }else{
+            System.out.println("El nombre del estudiante no es palindromo:");
+        }
 
+    }
+
+
+        /*
+        calcularDefinitivaEstudiante(universidad);
+    calcularPromedioCurso(universidad);
+    calcularPromedioEdad(universidad);
+    calcularPromedioNota1(universidad);
+    calcularNotaMayorCurso(universidad);
+    calcularNotaMenorCurso(universidad);
+    aprobacionCurso(universidad);
+    porcentajeAprobados(universidad);
+    porcentajeReprobados(universidad);
+    obtenerEstudianteNotasMayor4(universidad);
+    obtenerNotaMaxima(universidad);
+    */
+
+
+    public static void verificarEdadEsPrimo(Estudiante estudiante1, Docente docente){
+        boolean resultado=docente.verificarEdadEsPrimo(estudiante1.getEdad());
+        if(resultado) {
+            System.out.println("Edad es primo");
+        } else {
+            System.out.println("Edad no es primo");
+        }
+    }
 
     private static void crearEstudiante(Universidad universidad) {
         String nombre = leerStringConsola("Ingrese el nombre del estudiante: ");
@@ -444,8 +467,8 @@ public class Main {
     }
 }
 
-
-/*public static void calcularDefinitivaEstudiante(Estudiante estudiante, Docente docente){
+/*
+public static void calcularDefinitivaEstudiante(Universidad universidad){
 
     double definitiva=docente.calcularDefinitivaEstudiante(estudiante.getNota1(), estudiante.getNota2(), estudiante.getNota3());
         System.out.println("La definitiva es: "+definitiva);
@@ -457,7 +480,7 @@ public class Main {
         double promedio = docente.calcularPromedioCurso(def1, def2, def3);
         System.out.println("El promedio del curso es: " + promedio);
     }
-
+/*
     public static void calcularPromedioEdad(Estudiante estudiante1, Estudiante eestudiante2, Estudiante estudiante3, Docente docente) {
         int edadPromedio = docente.calcularPromedioEdad(estudiante1.getEdad(), eestudiante2.getEdad(), estudiante3.getEdad());
         System.out.println("La edad promedio es: " + edadPromedio);
