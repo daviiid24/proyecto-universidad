@@ -1,5 +1,7 @@
 package co.edu.uniquindio.universidad.model;
 
+import java.util.ArrayList;
+
 public class Estudiante {
 
     private String nombre;
@@ -9,9 +11,34 @@ public class Estudiante {
     private double nota1;
     private double nota2;
     private double nota3;
+    private ArrayList<Curso> listaCursosAsociados;
     private Universidad ownedByUniversidad;
 
     public Estudiante() {
+    }
+
+    public void agregarCurso(Curso curso) {
+        if (!listaCursosAsociados.contains(curso)) {
+            listaCursosAsociados.add(curso);
+            if (!curso.getListaEstudiantesAsociados().contains(this)) {
+                curso.getListaEstudiantesAsociados().add(this);
+            }
+        }
+    }
+
+    public void eliminarCurso(Curso curso) {
+        if (listaCursosAsociados.contains(curso)) {
+            listaCursosAsociados.remove(curso);
+            curso.getListaEstudiantesAsociados().remove(this);
+        }
+    }
+
+    public ArrayList<Curso> getListaCursosAsociados() {
+        return listaCursosAsociados;
+    }
+
+    public void setListaCursosAsociados(ArrayList<Curso> listaCursosAsociados) {
+        this.listaCursosAsociados = listaCursosAsociados;
     }
 
     public String getNombre() {
@@ -76,10 +103,5 @@ public class Estudiante {
 
     public void setOwnedByUniversidad(Universidad ownedByUniversidad) {
         this.ownedByUniversidad = ownedByUniversidad;
-    }
-    public double calcularNotaDefinitiva(double nota1, double nota2, double nota3) {
-        double definitiva=0;
-        definitiva=(nota1+nota2+nota3)/3;
-        return definitiva;
     }
 }

@@ -133,7 +133,7 @@ public class Universidad {
     public boolean eliminarDocente(String idEliminar) {
         Docente docenteEncontrado = obtenerDocente(idEliminar);
         if(docenteEncontrado!=null) {
-            getListaEstudiantes().remove(docenteEncontrado);
+            getListaDocentes().remove(docenteEncontrado);
             return true;
         } else {
             return false;
@@ -189,7 +189,7 @@ public class Universidad {
     public boolean eliminarCurso(String idEliminar) {
         Curso cursoEncontrado = obtenerCurso(idEliminar);
         if(cursoEncontrado!=null) {
-            getListaEstudiantes().remove(cursoEncontrado);
+            getListaCursos().remove(cursoEncontrado);
             return true;
         } else {
             return false;
@@ -262,5 +262,84 @@ public class Universidad {
     public Rector obtenerRector() {
         return this.rector;
             }
+
+    public boolean asociarCursoADocente(String idDocente, String idCurso) {
+        Docente docente = obtenerDocente(idDocente);
+        Curso curso = obtenerCurso(idCurso);
+
+        if (docente != null && curso != null) {
+            docente.agregarCurso(curso);
+            curso.setDocenteAsociado(docente);
+            return true;
+        } else {
+            return false;
+        }
     }
+    public void mostrarCursosDeDocente(String idDocente) {
+        Docente docente = obtenerDocente(idDocente);
+
+        if (docente != null) {
+            System.out.println("\nCursos asociados al docente " + docente.getNombre() + ":");
+            if (docente.getListaCursosAsociados().isEmpty()) {
+                System.out.println("No tiene cursos asociados.");
+            } else {
+                for (Curso curso : docente.getListaCursosAsociados()) {
+                    System.out.println("- " + curso.getNombre() + " (" + curso.getIdentificacion() + ")");
+                }
+            }
+        } else {
+            System.out.println("Docente no encontrado.");
+        }
+    }
+    public boolean asociarEstudianteACurso(String idEstudiante, String idCurso) {
+        Estudiante estudiante = obtenerEstudiante(idEstudiante);
+        Curso curso = obtenerCurso(idCurso);
+
+        if (estudiante != null && curso != null) {
+            curso.agregarEstudiante(estudiante);
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public void mostrarEstudiantesDeCurso(String idCurso) {
+        Curso curso = obtenerCurso(idCurso);
+
+        if (curso != null) {
+            System.out.println("\nEstudiantes del curso " + curso.getNombre() + ":");
+            if (curso.getListaEstudiantesAsociados().isEmpty()) {
+                System.out.println("No hay estudiantes asociados.");
+            } else {
+                for (Estudiante estudiante : curso.getListaEstudiantesAsociados()) {
+                    System.out.println("- " + estudiante.getNombre() + " (" + estudiante.getIdentificacion() + ")");
+                }
+            }
+        } else {
+            System.out.println("Curso no encontrado.");
+        }
+    }
+    public void agregarDocente(Docente docente) {
+        if (!listaDocentes.contains(docente)) {
+            listaDocentes.add(docente);
+            docente.setOwnedByUniversidad(this);
+        }
+    }
+
+    public void agregarCurso(Curso curso) {
+        if (!listaCursos.contains(curso)) {
+            listaCursos.add(curso);
+            curso.setOwnedByUniversidad(this);
+        }
+    }
+
+    public void agregarEstudiante(Estudiante estudiante) {
+        if (!listaEstudiantes.contains(estudiante)) {
+            listaEstudiantes.add(estudiante);
+            estudiante.setOwnedByUniversidad(this);
+        }
+    }
+
+
+    }
+
 

@@ -8,9 +8,6 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Universidad universidad = inicializarDatos();
-        Estudiante estudiante = universidad.getListaEstudiantes().get(0);
-        estudiante.getOwnedByUniversidad();
-
 
         int opcionPrincipal;
 
@@ -33,7 +30,6 @@ public class Main {
 
                 case 5:
                     verificarNombrePalindromo(estudiante1, docente);
-                    // menuMetodos(universidad);
                     break;
 
                 case 6:
@@ -88,7 +84,9 @@ public class Main {
             System.out.println("2 - Eliminar");
             System.out.println("3 - Actualizar");
             System.out.println("4 - Obtener");
-            System.out.println("5 - Salir");
+            System.out.println("5 - Asociar curso a docente");
+            System.out.println("6 - Mostrar cursos asociados a el docente");
+            System.out.println("7 - Salir");
             opcion = leerEntero("Seleccione una opción: ");
 
             switch (opcion) {
@@ -96,10 +94,12 @@ public class Main {
                 case 2 -> eliminarDocente(universidad);
                 case 3 -> actualizarDocente(universidad);
                 case 4 -> obtenerDocente(universidad);
-                case 5 -> System.out.println("Saliendo del menú docentes...");
+                case 5 -> asociarCursoADocente(universidad);
+                case 6 -> mostrarCursosDeDocente(universidad);
+                case 7 -> System.out.println("Saliendo del menú docentes...");
                 default -> System.out.println("Opción inválida.");
             }
-        } while (opcion != 5);
+        } while (opcion != 7);
     }
 
     private static void menuCursos(Universidad universidad) {
@@ -110,7 +110,9 @@ public class Main {
             System.out.println("2 - Eliminar");
             System.out.println("3 - Actualizar");
             System.out.println("4 - Obtener");
-            System.out.println("5 - Salir");
+            System.out.println("5 - Asociar estudiante a curso");
+            System.out.println("6 - Mostrar estudiantes asociados a un curso");
+            System.out.println("7 - Salir");
             opcion = leerEntero("Seleccione una opción: ");
 
             switch (opcion) {
@@ -118,10 +120,12 @@ public class Main {
                 case 2 -> eliminarCurso(universidad);
                 case 3 -> actualizarCurso(universidad);
                 case 4 -> obtenerCurso(universidad);
-                case 5 -> System.out.println("Saliendo del menú cursos...");
+                case 5 -> asociarEstudiantesACurso(universidad);
+                case 6 -> mostrarEstudiantesDeCurso(universidad);
+                case 7 -> System.out.println("Saliendo del menú cursos...");
                 default -> System.out.println("Opción inválida.");
             }
-        } while (opcion != 5);
+        } while (opcion != 7);
     }
 
     private static void menuRector(Universidad universidad) {
@@ -157,22 +161,6 @@ public class Main {
         }
 
     }
-
-
-        /*
-        calcularDefinitivaEstudiante(universidad);
-    calcularPromedioCurso(universidad);
-    calcularPromedioEdad(universidad);
-    calcularPromedioNota1(universidad);
-    calcularNotaMayorCurso(universidad);
-    calcularNotaMenorCurso(universidad);
-    aprobacionCurso(universidad);
-    porcentajeAprobados(universidad);
-    porcentajeReprobados(universidad);
-    obtenerEstudianteNotasMayor4(universidad);
-    obtenerNotaMaxima(universidad);
-    */
-
 
     public static void verificarEdadEsPrimo(Estudiante estudiante1, Docente docente){
         boolean resultado=docente.verificarEdadEsPrimo(estudiante1.getEdad());
@@ -390,6 +378,36 @@ public class Main {
             System.out.println("Rector no encontrado");
         }
     }
+    private static void asociarCursoADocente(Universidad universidad) {
+        String idDcocente = leerStringConsola("Ingrese la identificacion del docente:");
+        String idCurso = leerStringConsola("Ingrese la identificacion del curso");
+        boolean resultado = universidad.asociarCursoADocente(idDcocente, idCurso);
+
+        if (resultado) {
+            System.out.println("Curso asociado correctamente al docente.");
+        } else {
+            System.out.println("No se pudo asociar el curso. Verifique los datos.");
+        }
+    }
+    private static void mostrarCursosDeDocente(Universidad universidad) {
+        String idDocente = leerStringConsola("Ingrese la identificación del docente: ");
+        universidad.mostrarCursosDeDocente(idDocente);
+    }
+    private static void asociarEstudianteACurso(Universidad universidad) {
+        String idEstudiante = leerStringConsola("Ingrese la identificación del estudiante: ");
+        String idCurso = leerStringConsola("Ingrese la identificación del curso: ");
+        boolean resultado = universidad.asociarEstudianteACurso(idEstudiante, idCurso);
+
+        if (resultado) {
+            System.out.println("Estudiante asociado correctamente al curso.");
+        } else {
+            System.out.println("No se pudo asociar el estudiante. Verifique los datos.");
+        }
+    }
+    private static void mostrarEstudiantesDeCurso(Universidad universidad) {
+        String idCurso = leerStringConsola("Ingrese la identificación del curso: ");
+        universidad.mostrarEstudiantesDeCurso(idCurso);
+    }
 
     private static Universidad inicializarDatos() {
         Universidad universidad = new Universidad();
@@ -467,74 +485,3 @@ public class Main {
         return dato;
     }
 }
-
-/*
-public static void calcularDefinitivaEstudiante(Universidad universidad){
-
-    double definitiva=docente.calcularDefinitivaEstudiante(estudiante.getNota1(), estudiante.getNota2(), estudiante.getNota3());
-        System.out.println("La definitiva es: "+definitiva);
-    }
-    public static void calcularPromedioCurso(Estudiante estudiante1, Estudiante estudiante2, Estudiante estudiante3, Docente docente) {
-        double def1 = docente.calcularDefinitivaEstudiante(estudiante1.getNota1(), estudiante1.getNota2(), estudiante1.getNota3());
-        double def2 = docente.calcularDefinitivaEstudiante(estudiante2.getNota1(), estudiante2.getNota2(), estudiante2.getNota3());
-        double def3 = docente.calcularDefinitivaEstudiante(estudiante3.getNota1(), estudiante3.getNota2(), estudiante3.getNota3());
-        double promedio = docente.calcularPromedioCurso(def1, def2, def3);
-        System.out.println("El promedio del curso es: " + promedio);
-    }
-/*
-    public static void calcularPromedioEdad(Estudiante estudiante1, Estudiante eestudiante2, Estudiante estudiante3, Docente docente) {
-        int edadPromedio = docente.calcularPromedioEdad(estudiante1.getEdad(), eestudiante2.getEdad(), estudiante3.getEdad());
-        System.out.println("La edad promedio es: " + edadPromedio);
-    }
-    public static void calcularPromedioNota1(Estudiante estudiante1, Estudiante estudiante2, Estudiante estudiante3, Docente docente) {
-        double promedioNota1=docente.calcularPromedioNota1(estudiante1.getNota1(), estudiante2.getNota1(), estudiante3.getNota1());
-        System.out.println("El promedio de la nota 1 es " +promedioNota1);
-    }
-    public static void calcularNotaMayorCurso(Estudiante estudiante1, Estudiante estudiante2, Estudiante estudiante3, Docente docente) {
-        double def1 = docente.calcularDefinitivaEstudiante(estudiante1.getNota1(), estudiante1.getNota2(), estudiante1.getNota3());
-        double def2 = docente.calcularDefinitivaEstudiante(estudiante2.getNota1(), estudiante2.getNota2(), estudiante2.getNota3());
-        double def3 = docente.calcularDefinitivaEstudiante(estudiante3.getNota1(), estudiante3.getNota2(), estudiante3.getNota3());
-        double notaMayor= docente.calcularNotaMayorCurso(def1, def2, def3);
-        System.out.println("La nota mayor es " +notaMayor);
-    }
-    public static void calcularNotaMenorCurso(Estudiante estudiante1, Estudiante estudiante2, Estudiante estudiante3, Docente docente) {
-        double def1 = docente.calcularDefinitivaEstudiante(estudiante1.getNota1(), estudiante1.getNota2(), estudiante1.getNota3());
-        double def2 = docente.calcularDefinitivaEstudiante(estudiante2.getNota1(), estudiante2.getNota2(), estudiante2.getNota3());
-        double def3 = docente.calcularDefinitivaEstudiante(estudiante3.getNota1(), estudiante3.getNota2(), estudiante3.getNota3());
-        double notaMenor =docente.calcularNotaMenorCurso(def1, def2, def3);
-        System.out.println("La nota menor es " + notaMenor);
-    }
-    public static void aprobacionCurso(Estudiante estudiante1, Estudiante estudiante2, Estudiante estudiante3, Docente docente) {
-        double def1 = docente.calcularDefinitivaEstudiante(estudiante1.getNota1(), estudiante1.getNota2(), estudiante1.getNota3());
-        double def2 = docente.calcularDefinitivaEstudiante(estudiante2.getNota1(), estudiante2.getNota2(), estudiante2.getNota3());
-        double def3 = docente.calcularDefinitivaEstudiante(estudiante3.getNota1(), estudiante3.getNota2(), estudiante3.getNota3());
-        String aprobados=docente.aprobacionCurso(def1, def2, def3);
-        System.out.println("Aprobados: "+aprobados);
-    }
-    public static void porcentajeAprobados(Estudiante estudiante1, Estudiante estudiante2, Estudiante estudiante3, Docente docente) {
-        double def1 = docente.calcularDefinitivaEstudiante(estudiante1.getNota1(), estudiante1.getNota2(), estudiante1.getNota3());
-        double def2 = docente.calcularDefinitivaEstudiante(estudiante2.getNota1(), estudiante2.getNota2(), estudiante2.getNota3());
-        double def3 = docente.calcularDefinitivaEstudiante(estudiante3.getNota1(), estudiante3.getNota2(), estudiante3.getNota3());
-        double porcentajeAprobados = docente.calcularPorcentajeAprobados(def1, def2, def3);
-        System.out.println("Porcentaje de los aprobados: " + porcentajeAprobados);
-    }
-    public static void porcentajeReprobados(Estudiante estudiante1, Estudiante estudiante2, Estudiante estudiante3, Docente docente) {
-        double def1 = docente.calcularDefinitivaEstudiante(estudiante1.getNota1(), estudiante1.getNota2(), estudiante1.getNota3());
-        double def2 = docente.calcularDefinitivaEstudiante(estudiante2.getNota1(), estudiante2.getNota2(), estudiante2.getNota3());
-        double def3 = docente.calcularDefinitivaEstudiante(estudiante3.getNota1(), estudiante3.getNota2(), estudiante3.getNota3());
-        double porcentajeReprobados = docente.calcularPorcentajeReprobados(def1, def2, def3);
-        System.out.println("Porcentaje de los reprobados: " + porcentajeReprobados);
-    }
-    public static void obtenerEstudianteNotasMayor4(Estudiante estudiante1, Estudiante estudiante2, Estudiante estudiante3, Docente docente) {
-        String estudiante =docente.obtenerEstudianteNotasMayor4(estudiante1.getNota1(), estudiante1.getNota2(), estudiante1.getNota3(),
-                estudiante2.getNota1(), estudiante2.getNota2(), estudiante2.getNota3(),
-                estudiante3.getNota1(), estudiante3.getNota2(), estudiante3.getNota3());
-        System.out.println("Estudiante con todas las notas mayores o iguales a 4: "+ estudiante);
-    }
-    public static void obtenerNotaMaxima(Estudiante estudiante1, Estudiante estudiante2, Estudiante estudiante3, Docente docente) {
-        double def1 = docente.calcularDefinitivaEstudiante(estudiante1.getNota1(), estudiante1.getNota2(), estudiante1.getNota3());
-        double def2 = docente.calcularDefinitivaEstudiante(estudiante2.getNota1(), estudiante2.getNota2(), estudiante2.getNota3());
-        double def3 = docente.calcularDefinitivaEstudiante(estudiante3.getNota1(), estudiante3.getNota2(), estudiante3.getNota3());
-        double notaMaxima=docente.obtenerNotaMaxima(def1, def2, def3);
-        System.out.println("La nota maxima es de: "+notaMaxima);
-    }*/

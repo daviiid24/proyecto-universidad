@@ -1,5 +1,7 @@
 package co.edu.uniquindio.universidad.model;
 
+import java.util.ArrayList;
+
 public class Curso {
     private String nombre;
     private String semestre;
@@ -7,6 +9,8 @@ public class Curso {
     private double creditos;
     private String jornada;
     private String identificacion;
+    private Docente docenteAsociado;
+    private ArrayList<Estudiante> listaEstudiantesAsociados;
     private Universidad ownedByUniversidad;
     public Curso(){
 
@@ -19,7 +23,40 @@ public class Curso {
         this.creditos = creditos;
         this.jornada = jornada;
         this.identificacion = identificacion;
+        this.listaEstudiantesAsociados = new ArrayList<>();
         this.ownedByUniversidad = ownedByUniversidad;
+    }
+
+    public void agregarEstudiante(Estudiante estudiante) {
+        if (!listaEstudiantesAsociados.contains(estudiante)) {
+            listaEstudiantesAsociados.add(estudiante);
+            estudiante.agregarCurso(this);
+        } if (this.ownedByUniversidad != null) {
+            estudiante.setOwnedByUniversidad(this.ownedByUniversidad);
+        }
+    }
+
+    public void eliminarEstudiante(Estudiante estudiante) {
+        if (listaEstudiantesAsociados.contains(estudiante)) {
+            listaEstudiantesAsociados.remove(estudiante);
+            estudiante.eliminarCurso(this);
+        }
+    }
+
+    public Docente getDocenteAsociado() {
+        return docenteAsociado;
+    }
+
+    public void setDocenteAsociado(Docente docenteAsociado) {
+        this.docenteAsociado = docenteAsociado;
+    }
+
+    public ArrayList<Estudiante> getListaEstudiantesAsociados() {
+        return listaEstudiantesAsociados;
+    }
+
+    public void setListaEstudiantesAsociados(ArrayList<Estudiante> listaEstudiantesAsociados) {
+        this.listaEstudiantesAsociados = listaEstudiantesAsociados;
     }
 
     public String getNombre() {
