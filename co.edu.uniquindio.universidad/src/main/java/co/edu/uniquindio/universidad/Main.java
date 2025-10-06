@@ -29,7 +29,7 @@ public class Main {
                     break;
 
                 case 5:
-                    verificarNombrePalindromo(estudiante1, docente);
+                    //verificarNombrePalindromo(estudiante1, docente);
                     break;
 
                 case 6:
@@ -161,7 +161,7 @@ public class Main {
         }
 
     }
-
+    /*
     public static void verificarEdadEsPrimo(Estudiante estudiante1, Docente docente){
         boolean resultado=docente.verificarEdadEsPrimo(estudiante1.getEdad());
         if(resultado) {
@@ -170,7 +170,7 @@ public class Main {
             System.out.println("Edad no es primo");
         }
     }
-
+    */
     private static void crearEstudiante(Universidad universidad) {
         String nombre = leerStringConsola("Ingrese el nombre del estudiante: ");
         String apellido = leerStringConsola("Ingrese el apellido del estudiante: ");
@@ -393,7 +393,7 @@ public class Main {
         String idDocente = leerStringConsola("Ingrese la identificación del docente: ");
         universidad.mostrarCursosDeDocente(idDocente);
     }
-    private static void asociarEstudianteACurso(Universidad universidad) {
+    private static void asociarEstudiantesACurso(Universidad universidad) {
         String idEstudiante = leerStringConsola("Ingrese la identificación del estudiante: ");
         String idCurso = leerStringConsola("Ingrese la identificación del curso: ");
         boolean resultado = universidad.asociarEstudianteACurso(idEstudiante, idCurso);
@@ -411,40 +411,6 @@ public class Main {
 
     private static Universidad inicializarDatos() {
         Universidad universidad = new Universidad();
-        Estudiante estudiante1 = new Estudiante();
-        estudiante1.setNombre("Pedro");
-        estudiante1.setApellido("Perez");
-        estudiante1.setEdad(20);
-        estudiante1.setNota1(3.0);
-        estudiante1.setNota1(4.0);
-        estudiante1.setNota1(2.0);
-        estudiante1.setIdentificacion("1094");
-        Estudiante estudiante2 = new Estudiante();
-        estudiante2.setNombre("Ana");
-        estudiante2.setApellido("Arias");
-        estudiante2.setEdad(23);
-        estudiante2.setNota1(2.0);
-        estudiante2.setNota1(3.0);
-        estudiante2.setNota1(1.0);
-        estudiante2.setIdentificacion("1095");
-        Estudiante estudiante3 = new Estudiante();
-        estudiante3.setNombre("Carlos");
-        estudiante3.setApellido("Perez");
-        estudiante3.setEdad(20);
-        estudiante3.setNota1(3.0);
-        estudiante3.setNota1(3.0);
-        estudiante3.setNota1(3.0);
-        estudiante3.setIdentificacion("1096");
-
-        Docente docente = new Docente();
-        docente.setNombre("Pedro");
-        docente.setEdad(40);
-        docente.setCorreo("pedro@gmail.com");
-
-        universidad.getListaEstudiantes().add(estudiante1);
-        universidad.getListaEstudiantes().add(estudiante2);
-        universidad.getListaEstudiantes().add(estudiante3);
-        universidad.getListaDocentes().add(docente);
 
         return universidad;
     }

@@ -2,26 +2,30 @@ package co.edu.uniquindio.universidad.model;
 
 import java.util.ArrayList;
 
-public class Estudiante {
+public class Estudiante extends Persona {
 
-    private String nombre;
-    private String apellido;
-    private int edad;
-    private String identificacion;
     private double nota1;
     private double nota2;
     private double nota3;
+    private double nota4;
+    private double nota5;
     private ArrayList<Curso> listaCursosAsociados;
     private Universidad ownedByUniversidad;
 
     public Estudiante() {
+        this.listaCursosAsociados = new ArrayList<>();
     }
 
     public void agregarCurso(Curso curso) {
         if (!listaCursosAsociados.contains(curso)) {
             listaCursosAsociados.add(curso);
+
             if (!curso.getListaEstudiantesAsociados().contains(this)) {
                 curso.getListaEstudiantesAsociados().add(this);
+            }
+
+            if (this.ownedByUniversidad != null) {
+                curso.setOwnedByUniversidad(this.ownedByUniversidad);
             }
         }
     }
@@ -39,30 +43,6 @@ public class Estudiante {
 
     public void setListaCursosAsociados(ArrayList<Curso> listaCursosAsociados) {
         this.listaCursosAsociados = listaCursosAsociados;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public int getEdad() {
-        return edad;
-    }
-
-    public void setEdad(int edad) {
-        this.edad = edad;
     }
 
     public double getNota1() {
@@ -89,12 +69,20 @@ public class Estudiante {
         this.nota3 = nota3;
     }
 
-    public String getIdentificacion() {
-        return identificacion;
+    public double getNota4() {
+        return nota4;
     }
 
-    public void setIdentificacion(String identificacion) {
-        this.identificacion = identificacion;
+    public void setNota4(double nota4) {
+        this.nota4 = nota4;
+    }
+
+    public double getNota5() {
+        return nota5;
+    }
+
+    public void setNota5(double nota5) {
+        this.nota5 = nota5;
     }
 
     public Universidad getOwnedByUniversidad() {

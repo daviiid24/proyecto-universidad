@@ -338,8 +338,6 @@ public class Universidad {
             estudiante.setOwnedByUniversidad(this);
         }
     }
-
-
-    }
+}
 
 
